@@ -53,6 +53,7 @@ task CallableLoci {
 task Dx {
     File filtered_bed
     File simpleRepeats
+    File resRDS
     String genome
 
 	String fname = basename(filtered_bed)
@@ -66,7 +67,7 @@ task Dx {
 
 		Rscript /usr/local/lib/R/site-library/PureCN/extdata/Dx.R \
         --out ${SAMPLEID} \
-        --rds ${SAMPLEID}.rds \
+        --rds ${resRDS} \
         --callable ${SAMPLEID}_callable_status_filtered_cds.bed \
         --exclude ${simpleRepeats}
         --signatures

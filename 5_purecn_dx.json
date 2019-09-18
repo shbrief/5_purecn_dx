@@ -4,6 +4,7 @@
   "runDx.Dx.simpleRepeats": "File",
   "runDx.CallableLoci.tumor_bam": "File",
   "runDx.Dx.genome": "String",
+  "runDx.Dx.resRDS": "File",
   "runDx.CallableLoci.tumor_bai": "File",
   "runDx.CallableLoci.minDepth": "String"
 }
