@@ -6,6 +6,6 @@
   "runDx.Dx.genome": "String",
   "runDx.Dx.resRDS": "File",
   "runDx.CallableLoci.tumor_bai": "File",
-  "runDx.CallableLoci.minDepth": "String"
+  "runDx.CallableLoci.minDepth": "Int"
 }
 
