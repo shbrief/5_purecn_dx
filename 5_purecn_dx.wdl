@@ -92,6 +92,8 @@ task Dx {
 	String SAMPLEID = sub(fname, "_callable_status_filtered_cds.bed", "")
 
 	command <<<
+	    R -e 'BiocManager::install("deconstructSigs")'
+
 		Rscript /usr/local/lib/R/site-library/PureCN/extdata/Dx.R \
         --out ${SAMPLEID} \
         --rds ${resRDS} \
