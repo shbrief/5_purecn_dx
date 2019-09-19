@@ -12,7 +12,6 @@ workflow runDx {
 	
 	output {
 	    File TMB = Dx.mutation_burden
-	    File mutSig = Dx.signatures
 	}
 	
 	meta {
