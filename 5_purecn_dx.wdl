@@ -96,7 +96,7 @@ task Dx {
         --out ${SAMPLEID} \
         --rds ${resRDS} \
         --callable ${filtered_cds} \
-        --exclude ${simpleRepeats}
+        --exclude ${simpleRepeats} \
         --signatures
 	>>>
 	
