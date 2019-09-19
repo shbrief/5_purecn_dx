@@ -1,10 +1,10 @@
 {
   "runDx.CallableLoci.ref_fasta": "File",
+  "runDx.FilterCallableLoci.genome": "String",
   "runDx.CallableLoci.ref_dict": "File",
   "runDx.CallableLoci.gatk_docker": "String",
   "runDx.Dx.simpleRepeats": "File",
   "runDx.CallableLoci.tumor_bam": "File",
-  "runDx.Dx.genome": "String",
   "runDx.Dx.resRDS": "File",
   "runDx.CallableLoci.tumor_bai": "File",
   "runDx.CallableLoci.ref_fai": "File",

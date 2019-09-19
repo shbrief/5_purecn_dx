@@ -1,10 +1,14 @@
 workflow runDx {
 
 	call CallableLoci
-	call Dx {
+	call FilterCallableLoci {
 	    input:
 	        filtered_bed = CallableLoci.filtered_bed
 	}
+    call Dx {
+        input:
+            filtered_cds = FilterCallableLoci.filtered_cds
+    }
 	
 	output {
 	    File TMB = Dx.mutation_burden
@@ -52,12 +56,10 @@ task CallableLoci {
 	}
 }
 
-task Dx {
+task FilterCallableLoci {
     File filtered_bed
-    File simpleRepeats
-    File resRDS
     String genome
-
+    
 	String fname = basename(filtered_bed)
 	String SAMPLEID = sub(fname, "_callable_status_filtered.bed", "")
 
@@ -66,11 +68,34 @@ task Dx {
         --genome ${genome} \
         --infile ${filtered_bed} \
         --outfile ${SAMPLEID}_callable_status_filtered_cds.bed 
+	>>>
+	
+	output {
+        File filtered_cds = "${SAMPLEID}_callable_status_filtered_cds.bed"
+	}
+	
+	runtime {
+		docker: "quay.io/shbrief/pcn_docker"
+		cpu : 4
+		memory: "8 GB"
+	}
+}
+
+task Dx {
+    File filtered_cds
+    File simpleRepeats
+    File resRDS
+    
+	String fname = basename(filtered_cds)
+	String SAMPLEID = sub(fname, "_callable_status_filtered_cds.bed", "")
+
+	command <<<
+	    R -e 'BiocManager::install("TxDb.Hsapiens.UCSC.hg19.knownGene")'
 
 		Rscript /usr/local/lib/R/site-library/PureCN/extdata/Dx.R \
         --out ${SAMPLEID} \
         --rds ${resRDS} \
-        --callable ${SAMPLEID}_callable_status_filtered_cds.bed \
+        --callable ${filtered_cds} \
         --exclude ${simpleRepeats}
         --signatures
 	>>>
