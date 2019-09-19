@@ -104,7 +104,6 @@ task Dx {
 	
 	output {
 		File mutation_burden = "${SAMPLEID}_mutation_burden.csv"
-		File signatures = "${SAMPLEID}_signatures.csv"
 	}
 	
 	runtime {
