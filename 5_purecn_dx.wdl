@@ -22,6 +22,7 @@ task CallableLoci {
     File tumor_bam
     File tumor_bai
     File ref_fasta
+    File ref_fai
     Int minDepth   # 30
     String gatk_docker   # broadinstitute/gatk3:3.8-1
     String SAMPLEID = basename(tumor_bam, ".bam")
