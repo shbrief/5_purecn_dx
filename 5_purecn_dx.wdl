@@ -64,6 +64,8 @@ task FilterCallableLoci {
 	String SAMPLEID = sub(fname, "_callable_status_filtered.bed", "")
 
 	command <<<
+	    R -e 'BiocManager::install("TxDb.Hsapiens.UCSC.hg19.knownGene")'
+	    
 		Rscript /usr/local/lib/R/site-library/PureCN/extdata/FilterCallableLoci.R \
         --genome ${genome} \
         --infile ${filtered_bed} \
@@ -90,8 +92,6 @@ task Dx {
 	String SAMPLEID = sub(fname, "_callable_status_filtered_cds.bed", "")
 
 	command <<<
-	    R -e 'BiocManager::install("TxDb.Hsapiens.UCSC.hg19.knownGene")'
-
 		Rscript /usr/local/lib/R/site-library/PureCN/extdata/Dx.R \
         --out ${SAMPLEID} \
         --rds ${resRDS} \
